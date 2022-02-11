@@ -169,6 +169,14 @@ h2, p { color: #666666; }
     background-color: rgba(0,0,0,0.5);
 }
 
+.tm-btn-delete {
+    color: white;
+    background-color: red;
+    width: 280px;
+    height: 60px;
+}
+.btn-delete:hover { background-color: red; }
+
 .tm-btn-cta:before { font-size: 180%; }
 .tm-btn-download:before { font-size: 120%; }
 .tm-btn-submit:before { font-size: 120%; }
