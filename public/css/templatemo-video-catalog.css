@@ -17,12 +17,14 @@ body {
     overflow-x: hidden;
 }
 
-a {
-    transition: all 0.3s ease;
+a{
     color: #666;
 }
+.link-a {
+    transition: all 0.3s ease;
+}
 
-a:hover {
+.link-a:hover {
     color: #29BBCC;
     text-decoration: none;
 }
@@ -95,7 +97,8 @@ h2, p { color: #666666; }
 .tm-welcome-text { font-size: 1.6rem; }
 
 .btn {
-    padding: 15px 60px;
+    padding: 10px 65px;
+    margin: 10px;
     font-size: 1.6rem;
     border: none;
     cursor: pointer;
@@ -103,10 +106,6 @@ h2, p { color: #666666; }
 
 .btn-primary { background-color: #3399CC; }
 .btn-primary:hover { background-color: #1674a0; }
-
-/*
-    Button hover effect: https://tympanus.net/Development/CreativeButtons/
-*/
 
 .tm-btn-animate {
     position: relative;
@@ -217,10 +216,16 @@ h2, p { color: #666666; }
 .tm-catalog-item-list { justify-content: start; }
 
 .tm-catalog-item {
-    max-width: 462px;
     display: flex;
     flex-direction: column;
     margin-bottom: 64px;
+    max-width: 465px;
+    max-height: 465px;
+}
+
+.tm-index {
+    max-width: 465px;
+    max-height: 465px;
 }
 
 .tm-thumbnail-container { overflow: hidden; }
@@ -497,7 +502,7 @@ video {
     }
 
     .tm-site-header { padding: 20px; }
-    .tm-catalog-item-list { max-width: 924px; }
+    .tm-catalog-item-list { max-width: 500px; }
     .tm-share-box { max-width: 400px; }
 }
 
