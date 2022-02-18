@@ -3,10 +3,24 @@ const fs = require('fs');
 const fileUpload = require('express-fileupload');
 
 exports.getAllPhotos = async (req, res) => {
-  const photos = await Photo.find({}).sort('-dateCreated');
+  const page = req.query.page || 1;
+  const photosPerPage = 2;
+
+  const totalPhotos = await Photo.find({}).countDocuments();
+
+  const photos = await Photo.find({})
+  .sort('-dateCreated')
+  .skip((page-1) * photosPerPage)
+  .limit(photosPerPage);
+
+
   res.render('index', {
-    photos,
+    photos: photos,
+    current: Number(page),
+    pages: Math.ceil(totalPhotos/photosPerPage)
   });
+
+
 };
 
 exports.getPhoto = async (req, res) => {
