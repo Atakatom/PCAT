@@ -17,6 +17,10 @@ body {
     overflow-x: hidden;
 }
 
+.full-img{
+    width: 100%;
+}
+
 a{
     color: #666;
 }
