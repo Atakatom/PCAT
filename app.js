@@ -1,53 +1,49 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const methodOverride = require('method-override');
-const fileUpload = require('express-fileupload');
-const ejs = require('ejs');
-const photoController = require('./controllers/photoControllers');
-const pageController = require('./controllers/pageController');
 
-const app = express();
+const express = require("express")
+const mongoose = require("mongoose")
+const fileUpload = require("express-fileupload")
+const methodOverride = require("method-override")
+const ejs = require("ejs")
+const photoController = require("./controllers/photoControllers")
+const pageController = require("./controllers/pageController")
 
-// //connect DB
-// mongoose.connect('mongodb+srv://atakan:e5B2Kmt9YEg74wn1@cluster0.q3ug1.mongodb.net/pcat-db?retryWrites=true&w=majority', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   useFindAndModify: false,
-// })
+const app = express()
 
-//TEMPLATE ENGINE
-app.set('view engine', 'ejs');
+// // Connect DB
+// mongoose.connect("mongodb://localhost/pcat-test-db")
 
-//MIDDLEWARES
-app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(fileUpload());
+mongoose.connect('mongodb://0.0.0.0:27017/testdb').then(() => {
+console.log("Connected to Database");
+}).catch((err) => {
+    console.log("Not Connected to Database ERROR! ", err);
+})
+
+// TEMPLATE ENGINE
+app.set("view engine", "ejs")
+
+// MIDDLEWARES -> Everything between requests and responses.
+app.use(express.static("public"))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(fileUpload())
 app.use(
-  methodOverride('_method', {
-    methods: ['POST', 'GET'],
+  methodOverride("_method", {
+    methods: ["POST", "GET"],
   })
-);
+)
 
-//ROUTES
+// ROUTES
+app.get("/", photoController.getAllPhotos)
+app.get("/photos/:id", photoController.getPhoto)
+app.post("/photos", photoController.createPhoto)
+app.put("/photos/:id", photoController.updatePhoto)
+app.delete("/photos/:id", photoController.deletePhoto)
 
-app.get('/', photoController.getAllPhotos);
+app.get("/about", pageController.getAboutPage)
+app.get("/add", pageController.getAddPage)
+app.get("/photos/edit/:id", pageController.getEditPage)
 
-app.get('/photos/:id', photoController.getPhoto);
-
-app.post('/photos', photoController.createPhoto);
-
-app.delete('/photos/:id', photoController.deletePhoto);
-
-app.get('/add', pageController.getAddPage);
-
-app.put('/photos/:id', photoController.updatePhoto);
-
-app.get('/about', pageController.getAboutPage);
-
-app.get('/photos/edit/:id', pageController.getEditPage);
-
-const port = process.env.PORT || 5000;
+const port = 3000
 app.listen(port, () => {
-  console.log(`Server has started running on port ${port}`);
-});
+  console.log(`Server is started at port ${port}...`)
+})
