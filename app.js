@@ -12,7 +12,7 @@ const app = express()
 // // Connect DB
 // mongoose.connect("mongodb://localhost/pcat-test-db")
 
-mongoose.connect('mongodb://0.0.0.0:27017/testdb').then(() => {
+mongoose.connect('mongodb+srv://atakan:FjTX6KC9s21IS42j@cluster0.llj5l.mongodb.net/pcat-db?retryWrites=true&w=majority').then(() => {
 console.log("Connected to Database");
 }).catch((err) => {
     console.log("Not Connected to Database ERROR! ", err);
@@ -43,7 +43,7 @@ app.get("/about", pageController.getAboutPage)
 app.get("/add", pageController.getAddPage)
 app.get("/photos/edit/:id", pageController.getEditPage)
 
-const port = 3000
+const port = 3000 || process.env.port
 app.listen(port, () => {
   console.log(`Server is started at port ${port}...`)
 })
