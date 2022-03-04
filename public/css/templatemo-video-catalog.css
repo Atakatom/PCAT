@@ -44,6 +44,13 @@ h2, p { color: #666666; }
     padding: 40px;
 }
 
+.blocker {
+    display: block;
+    padding: 25px;
+    width: 150px;
+    height: 100px;
+}
+
 .tm-logo-container {
     display: block;
     padding: 30px;
@@ -75,7 +82,7 @@ h2, p { color: #666666; }
 .tm-text-secondary { color: #3CAFAF; }
 
 .tm-nav-link {
-    color: #343a40;
+    color: white;
     font-size: 1.4rem;    
 }
 
