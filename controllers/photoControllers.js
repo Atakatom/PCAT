@@ -46,6 +46,9 @@ exports.createPhoto = async (req, res) => {
 
 exports.updatePhoto = async (req, res) => {
     const photo = await Photo.findOne({ _id: req.params.id })
+    
+    let uploadedImage = req.files.image.name;
+    photo.image =  "/uploads/" + uploadedImage.name
     photo.title = req.body.title
     photo.description = req.body.description
     photo.save()
